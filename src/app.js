@@ -215,10 +215,11 @@ function taskDisplay() {
       else 
       document.querySelector(`#${e.status} .board__items`).insertAdjacentHTML('beforeend', `<div class="board__item"
       draggable="true"><input type="hidden" class="board__item_id" value="${i}"><div class="board__itemText">${e.text}</div><textarea class="board__item_edit hide">${e.text}</textarea></div>`)
-
-      if (e.status == "Backlog") document.querySelector("#Ready .dropdown").insertAdjacentHTML('beforeend', `<li data-id="${i}">${e.text}</li>`)
-      if (e.status == "Ready") document.querySelector("#Progress .dropdown").insertAdjacentHTML('beforeend', `<li data-id="${i}">${e.text}</li>`)
-      if (e.status == "Progress") document.querySelector("#Finished .dropdown").insertAdjacentHTML('beforeend', `<li data-id="${i}">${e.text}</li>`)
+      if (getRoleByName(userLogin) == 'admin' || e.owner == userLogin){
+        if (e.status == "Backlog") document.querySelector("#Ready .dropdown").insertAdjacentHTML('beforeend', `<li data-id="${i}">${e.text}</li>`)
+        if (e.status == "Ready") document.querySelector("#Progress .dropdown").insertAdjacentHTML('beforeend', `<li data-id="${i}">${e.text}</li>`)
+        if (e.status == "Progress") document.querySelector("#Finished .dropdown").insertAdjacentHTML('beforeend', `<li data-id="${i}">${e.text}</li>`)
+      }
     })
     document.querySelectorAll(".dropdown li").forEach((li, index) => {
       li.addEventListener('click', function (event) {
