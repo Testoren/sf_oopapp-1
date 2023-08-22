@@ -350,6 +350,7 @@ function activeTask() {
   let activeTask = 0;
   let finishedTask = 0;
 
+  if (allTask != null && allTask.length > 0)
   allTask.forEach((e) => {
     if (getRoleByName(userLogin) == 'admin' || e.owner == userLogin){
       if(e.status == 'Finished') finishedTask++;
